@@ -101,7 +101,7 @@ def train(model, train_loader, val_loader, criterion, optimizer, epochs, device,
         print(f"\nTrain: f1_macro     {compute_score(train_cm, metric='f1_macro'):0.2f}\n"
               f"       f1_weighted  {compute_score(train_cm, metric='f1_weighted'):0.2f}\n"
               f"       accuracy     {compute_score(train_cm, metric='accuracy'):0.2f}\n")
-        plot_confusion_matrix(train_cm, cls_names[:-1], fig_path=f'../heatmap/train/ep_{ep}.png')
+        plot_confusion_matrix(train_cm, cls_names[:-1], fig_path=f'heatmap/train/ep_{ep}.png')
 
         val_loss = 0.
         start = time.time()        
@@ -122,7 +122,7 @@ def train(model, train_loader, val_loader, criterion, optimizer, epochs, device,
               f"       f1_macro     {compute_score(val_cm, metric='f1_macro'):0.2f}\n"
               f"       f1_weighted  {compute_score(val_cm, metric='f1_weighted'):0.2f}\n"
               f"       accuracy     {compute_score(val_cm, metric='accuracy'):0.2f}\n")
-        plot_confusion_matrix(val_cm, cls_names[:-1], fig_path=f'../heatmap/val/ep_{ep}.png')
+        plot_confusion_matrix(val_cm, cls_names[:-1], fig_path=f'heatmap/val/ep_{ep}.png')
 
 
         if val_loss < best_val_loss:
@@ -141,7 +141,7 @@ if __name__ == '__main__':
 
     # Prepare data
     train_dataset_config = {
-        'data_path' : '/workspace/nlplab/kienvt/PhoNER_COVID19_implement/data/word/train_word.json',
+        'data_path' : 'data/word/train_word.json',
         'tokenizer' : 'vinai/phobert-large',
         'max_length' : 100, 
     }
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
 
     val_dataset_config = {
-        'data_path' : '/workspace/nlplab/kienvt/PhoNER_COVID19_implement/data/word/dev_word.json',
+        'data_path' : 'data/word/dev_word.json',
         'tokenizer' : train_dataset_config['tokenizer'],
         'max_length' : train_dataset_config['max_length'], 
     }
