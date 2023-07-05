@@ -1,2 +1,5 @@
 PhoNER_COVID19_implement/nerenv
-PhoNER_COVID19_implement/code/\*.pt
+code/best_model_params_word.pt
+code/best_model_params_word_large.pt
+code/best_model_params_syllable.pt
+code/best_model_params_syllable_large.pt
