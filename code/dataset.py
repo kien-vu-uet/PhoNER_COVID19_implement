@@ -52,6 +52,8 @@ class COVID19Dataset(Dataset):
     def __getitem__(self, index):
         def tokenize(tokenizer, words, max_length):
             results = tokenizer.encode(words, add_special_tokens=False)
+            results.insert(0, tokenizer.cls_token_id)
+            results.append(tokenizer.sep_token_id)
             attn_mask = [1.] * len(results)
             while len(results) < max_length: results.append(tokenizer.pad_token_id)
             while len(attn_mask) < max_length: attn_mask.append(0.)
@@ -61,6 +63,8 @@ class COVID19Dataset(Dataset):
             item = self.raw_data[index]
             input_ids, attn_mask = tokenize(self.tokenizer, item['words'], self.max_length)
             target_tags = [self.tag2idx[tag] for tag in item['tags']]
+            target_tags.insert(0, self.pad_tag_id)
+            target_tags.append(self.pad_tag_id)
             while len(target_tags) < self.max_length: target_tags.append(self.pad_tag_id)
             self.map_data[index] = (
                 torch.tensor(input_ids), 

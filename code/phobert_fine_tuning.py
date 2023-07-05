@@ -141,7 +141,7 @@ if __name__ == '__main__':
 
     # Prepare data
     train_dataset_config = {
-        'data_path' : '../data/word/train_word.json',
+        'data_path' : '/workspace/nlplab/kienvt/PhoNER_COVID19_implement/data/word/train_word.json',
         'tokenizer' : 'vinai/phobert-large',
         'max_length' : 100, 
     }
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
 
     val_dataset_config = {
-        'data_path' : '../data/word/dev_word.json',
+        'data_path' : '/workspace/nlplab/kienvt/PhoNER_COVID19_implement/data/word/dev_word.json',
         'tokenizer' : train_dataset_config['tokenizer'],
         'max_length' : train_dataset_config['max_length'], 
     }
