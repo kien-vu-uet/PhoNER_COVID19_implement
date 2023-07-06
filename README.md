@@ -2,8 +2,7 @@
 
 ## Implementation of paper: [COVID-19 Named Entity Recognition for Vietnamese](https://aclanthology.org/2021.naacl-main.173/)
 
-## Dataset: [`COVID-19 Named Entity Recognition for Vietnamese`](https://github.com/VinAIResearch/PhoNER_COVID19)https://github.com/VinAIResearch/PhoNER_COVID19
-
+## Dataset: [`COVID-19 Named Entity Recognition for Vietnamese`](https://github.com/VinAIResearch/PhoNER_COVID19)
 # Setup
 ## Installation
 
