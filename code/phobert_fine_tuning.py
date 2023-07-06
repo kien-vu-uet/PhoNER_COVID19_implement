@@ -137,11 +137,11 @@ if __name__ == '__main__':
     BATCH_SIZE = 16
     EPOCHS = 25
     LR = 3e-5
-    BEST_MODEL_PARAMS_PATH = "best_model_params_word_large.pt"
+    BEST_MODEL_PARAMS_PATH = "best_model_params_syllable_large.pt"
 
     # Prepare data
     train_dataset_config = {
-        'data_path' : 'data/word/train_word.json',
+        'data_path' : 'data/syllable/train_syllable.json',
         'tokenizer' : 'vinai/phobert-large',
         'max_length' : 100, 
     }
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_set, batch_size=BATCH_SIZE, shuffle=True)
 
     val_dataset_config = {
-        'data_path' : 'data/word/dev_word.json',
+        'data_path' : 'data/syllable/dev_syllable.json',
         'tokenizer' : train_dataset_config['tokenizer'],
         'max_length' : train_dataset_config['max_length'], 
     }

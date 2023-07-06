@@ -35,17 +35,19 @@ def infer(model, loader, criterion, device):
             f"       f1_macro     {compute_score(cm, metric='f1_macro'):0.2f}\n"
             f"       f1_weighted  {compute_score(cm, metric='f1_weighted'):0.2f}\n"
             f"       accuracy     {compute_score(cm, metric='accuracy'):0.2f}\n")
-    plot_confusion_matrix(cm, cls_names[:-1], fig_path=f'../heatmap/test/test.png')
+    plot_confusion_matrix(cm, cls_names[:-1], fig_path=f'heatmap/test/test.png')
 
     print('|-------------------------------------------------------------------------------------------|')
 
 if __name__ == "__main__":
     BATCH_SIZE = 64
-    BEST_MODEL_PARAMS_PATH = "best_model_params_word_large.pt"
+    BEST_MODEL_PARAMS_PATH = "best_model_params_syllable_large.pt"
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    best_model_params_path = os.path.join(ROOT_DIR, BEST_MODEL_PARAMS_PATH)
 
     # Prepare data
     test_dataset_config = {
-        'data_path' : '../data/word/test_word.json',
+        'data_path' : 'data/syllable/test_syllable.json',
         'tokenizer' : 'vinai/phobert-large',
         'max_length' : 100, 
     }
@@ -55,7 +57,7 @@ if __name__ == "__main__":
     # Define model
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = PhoBertNER(model = test_dataset_config['tokenizer'], num_cls = test_set.tag_vocab_size, dropout=0.1)
-    model.load_state_dict(torch.load(BEST_MODEL_PARAMS_PATH))
+    model.load_state_dict(torch.load(best_model_params_path))
     model = model.to(device)
     # Loss function
     criterion = nn.CrossEntropyLoss(ignore_index=test_set.pad_tag_id)
